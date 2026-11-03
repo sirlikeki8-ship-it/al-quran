@@ -1,37 +1,131 @@
 package com.likeki.alquran
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.compose.runtime.*
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.likeki.alquran.playback.PlayerController
+import com.likeki.alquran.ui.PlayerScreen
+import com.likeki.alquran.ui.SettingsSheet
 import com.likeki.alquran.ui.theme.AlQuranTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val vm: PlaybackViewModel by viewModels()
+    private lateinit var controller: PlayerController
+
+    private val notifPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { /* ignore result — playback still works, notification just hidden on older devices */ }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        controller = PlayerController(this)
+        controller.connect { }
+
+        maybeRequestNotifications()
+
         setContent {
             AlQuranTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Placeholder()
+                var showSettings by remember { mutableStateOf(false) }
+
+                val state by vm.state.collectAsState()
+
+                // Sync playback state from service to view model
+                DisposableEffect(Unit) {
+                    controller.onStateChanged = { playing, pos, dur, idx ->
+                        vm.setPlaying(playing)
+                        vm.setProgress(pos, dur)
+                    }
+                    controller.onError = { msg -> vm.setError(msg) }
+                    controller.onTrackEnded = {
+                        val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
+                        if (next != null) {
+                            vm.selectTrack(next)
+                            state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
+                        } else {
+                            vm.setPlaying(false)
+                        }
+                    }
+                    onDispose { controller.release() }
+                }
+
+                PlayerScreen(
+                    vm = vm,
+                    onPlayPause = {
+                        val track = state.currentTrack ?: return@PlayerScreen
+                        if (!state.isPlaying) {
+                            controller.play(track)
+                        } else {
+                            controller.playPause()
+                        }
+                    },
+                    onNext = {
+                        val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
+                        if (next != null) {
+                            vm.selectTrack(next)
+                            state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
+                        }
+                    },
+                    onPrevious = {
+                        val prev = (state.currentIndex - 1).takeIf { it >= 0 }
+                            ?: (state.playlist.tracks.size - 1)
+                        vm.selectTrack(prev)
+                        state.playlist.tracks.getOrNull(prev)?.let { controller.play(it) }
+                    },
+                    onSeek = { ms -> controller.seekTo(ms) },
+                    onSelectTrack = { idx ->
+                        vm.selectTrack(idx)
+                        state.playlist.tracks.getOrNull(idx)?.let { controller.play(it) }
+                    },
+                    onSettings = { showSettings = true }
+                )
+
+                if (showSettings) {
+                    SettingsSheet(onDismiss = { showSettings = false })
+                }
+
+                state.error?.let { msg ->
+                    LaunchedEffect(msg) {
+                        android.widget.Toast.makeText(this@MainActivity, msg, android.widget.Toast.LENGTH_LONG).show()
+                        vm.setError(null)
+                    }
                 }
             }
         }
     }
-}
 
-@Composable
-private fun Placeholder() {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("AL QURAN")
+    private fun maybeRequestNotifications() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            val granted = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+            if (!granted) notifPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
+
+    private fun nextIndex(current: Int, repeat: Int, shuffle: Boolean, total: Int): Int? {
+        if (total == 0) return null
+        if (repeat == 1) return current
+        val cand = if (shuffle) {
+            (0 until total).filter { it != current }.randomOrNull()
+        } else current + 1
+        return when {
+            cand == null -> null
+            cand < total -> cand
+            repeat == 2 -> 0
+            else -> null
+        }
     }
 }

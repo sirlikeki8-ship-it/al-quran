@@ -1,1 +1,811 @@
-{"version":1,"baseUrl":"","tracks":[]}
+{
+  "version": 1,
+  "baseUrl": "https://github.com/sirlikeki8-ship-it/al-quran/releases/download/audio-v1/",
+  "tracks": [
+    {
+      "number": 1,
+      "displayName": "Track 1",
+      "displayNameArabic": "",
+      "filename": "001.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 2,
+      "displayName": "Track 2",
+      "displayNameArabic": "",
+      "filename": "002.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 3,
+      "displayName": "Track 3",
+      "displayNameArabic": "",
+      "filename": "003.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 4,
+      "displayName": "Track 4",
+      "displayNameArabic": "",
+      "filename": "004.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 5,
+      "displayName": "Track 5",
+      "displayNameArabic": "",
+      "filename": "005.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 6,
+      "displayName": "Track 6",
+      "displayNameArabic": "",
+      "filename": "006.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 7,
+      "displayName": "Track 7",
+      "displayNameArabic": "",
+      "filename": "007.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 8,
+      "displayName": "Track 8",
+      "displayNameArabic": "",
+      "filename": "008.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 9,
+      "displayName": "Track 9",
+      "displayNameArabic": "",
+      "filename": "009.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 10,
+      "displayName": "Track 10",
+      "displayNameArabic": "",
+      "filename": "010.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 11,
+      "displayName": "Track 11",
+      "displayNameArabic": "",
+      "filename": "011.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 12,
+      "displayName": "Track 12",
+      "displayNameArabic": "",
+      "filename": "012.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 13,
+      "displayName": "Track 13",
+      "displayNameArabic": "",
+      "filename": "013.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 14,
+      "displayName": "Track 14",
+      "displayNameArabic": "",
+      "filename": "014.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 15,
+      "displayName": "Track 15",
+      "displayNameArabic": "",
+      "filename": "015.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 16,
+      "displayName": "Track 16",
+      "displayNameArabic": "",
+      "filename": "016.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 17,
+      "displayName": "Track 17",
+      "displayNameArabic": "",
+      "filename": "017.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 18,
+      "displayName": "Track 18",
+      "displayNameArabic": "",
+      "filename": "018.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 19,
+      "displayName": "Track 19",
+      "displayNameArabic": "",
+      "filename": "019.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 20,
+      "displayName": "Track 20",
+      "displayNameArabic": "",
+      "filename": "020.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 21,
+      "displayName": "Track 21",
+      "displayNameArabic": "",
+      "filename": "021.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 22,
+      "displayName": "Track 22",
+      "displayNameArabic": "",
+      "filename": "022.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 23,
+      "displayName": "Track 23",
+      "displayNameArabic": "",
+      "filename": "023.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 24,
+      "displayName": "Track 24",
+      "displayNameArabic": "",
+      "filename": "024.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 25,
+      "displayName": "Track 25",
+      "displayNameArabic": "",
+      "filename": "025.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 26,
+      "displayName": "Track 26",
+      "displayNameArabic": "",
+      "filename": "026.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 27,
+      "displayName": "Track 27",
+      "displayNameArabic": "",
+      "filename": "027.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 28,
+      "displayName": "Track 28",
+      "displayNameArabic": "",
+      "filename": "028.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 29,
+      "displayName": "Track 29",
+      "displayNameArabic": "",
+      "filename": "029.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 30,
+      "displayName": "Track 30",
+      "displayNameArabic": "",
+      "filename": "030.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 31,
+      "displayName": "Track 31",
+      "displayNameArabic": "",
+      "filename": "031.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 32,
+      "displayName": "Track 32",
+      "displayNameArabic": "",
+      "filename": "032.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 33,
+      "displayName": "Track 33",
+      "displayNameArabic": "",
+      "filename": "033.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 34,
+      "displayName": "Track 34",
+      "displayNameArabic": "",
+      "filename": "034.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 35,
+      "displayName": "Track 35",
+      "displayNameArabic": "",
+      "filename": "035.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 36,
+      "displayName": "Track 36",
+      "displayNameArabic": "",
+      "filename": "036.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 37,
+      "displayName": "Track 37",
+      "displayNameArabic": "",
+      "filename": "037.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 38,
+      "displayName": "Track 38",
+      "displayNameArabic": "",
+      "filename": "038.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 39,
+      "displayName": "Track 39",
+      "displayNameArabic": "",
+      "filename": "039.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 40,
+      "displayName": "Track 40",
+      "displayNameArabic": "",
+      "filename": "040.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 41,
+      "displayName": "Track 41",
+      "displayNameArabic": "",
+      "filename": "041.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 42,
+      "displayName": "Track 42",
+      "displayNameArabic": "",
+      "filename": "042.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 43,
+      "displayName": "Track 43",
+      "displayNameArabic": "",
+      "filename": "043.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 44,
+      "displayName": "Track 44",
+      "displayNameArabic": "",
+      "filename": "044.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 45,
+      "displayName": "Track 45",
+      "displayNameArabic": "",
+      "filename": "045.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 46,
+      "displayName": "Track 46",
+      "displayNameArabic": "",
+      "filename": "046.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 47,
+      "displayName": "Track 47",
+      "displayNameArabic": "",
+      "filename": "047.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 48,
+      "displayName": "Track 48",
+      "displayNameArabic": "",
+      "filename": "048.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 49,
+      "displayName": "Track 49",
+      "displayNameArabic": "",
+      "filename": "049.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 50,
+      "displayName": "Track 50",
+      "displayNameArabic": "",
+      "filename": "050.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 51,
+      "displayName": "Track 51",
+      "displayNameArabic": "",
+      "filename": "051.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 52,
+      "displayName": "Track 52",
+      "displayNameArabic": "",
+      "filename": "052.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 53,
+      "displayName": "Track 53",
+      "displayNameArabic": "",
+      "filename": "053.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 54,
+      "displayName": "Track 54",
+      "displayNameArabic": "",
+      "filename": "054.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 55,
+      "displayName": "Track 55",
+      "displayNameArabic": "",
+      "filename": "055.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 56,
+      "displayName": "Track 56",
+      "displayNameArabic": "",
+      "filename": "056.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 57,
+      "displayName": "Track 57",
+      "displayNameArabic": "",
+      "filename": "057.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 58,
+      "displayName": "Track 58",
+      "displayNameArabic": "",
+      "filename": "058.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 59,
+      "displayName": "Track 59",
+      "displayNameArabic": "",
+      "filename": "059.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 60,
+      "displayName": "Track 60",
+      "displayNameArabic": "",
+      "filename": "060.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 61,
+      "displayName": "Track 61",
+      "displayNameArabic": "",
+      "filename": "061.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 62,
+      "displayName": "Track 62",
+      "displayNameArabic": "",
+      "filename": "062.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 63,
+      "displayName": "Track 63",
+      "displayNameArabic": "",
+      "filename": "063.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 64,
+      "displayName": "Track 64",
+      "displayNameArabic": "",
+      "filename": "064.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 65,
+      "displayName": "Track 65",
+      "displayNameArabic": "",
+      "filename": "065.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 66,
+      "displayName": "Track 66",
+      "displayNameArabic": "",
+      "filename": "066.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 67,
+      "displayName": "Track 67",
+      "displayNameArabic": "",
+      "filename": "067.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 68,
+      "displayName": "Track 68",
+      "displayNameArabic": "",
+      "filename": "068.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 69,
+      "displayName": "Track 69",
+      "displayNameArabic": "",
+      "filename": "069.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 70,
+      "displayName": "Track 70",
+      "displayNameArabic": "",
+      "filename": "070.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 71,
+      "displayName": "Track 71",
+      "displayNameArabic": "",
+      "filename": "071.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 72,
+      "displayName": "Track 72",
+      "displayNameArabic": "",
+      "filename": "072.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 73,
+      "displayName": "Track 73",
+      "displayNameArabic": "",
+      "filename": "073.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 74,
+      "displayName": "Track 74",
+      "displayNameArabic": "",
+      "filename": "074.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 75,
+      "displayName": "Track 75",
+      "displayNameArabic": "",
+      "filename": "075.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 76,
+      "displayName": "Track 76",
+      "displayNameArabic": "",
+      "filename": "076.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 77,
+      "displayName": "Track 77",
+      "displayNameArabic": "",
+      "filename": "077.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 78,
+      "displayName": "Track 78",
+      "displayNameArabic": "",
+      "filename": "078.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 79,
+      "displayName": "Track 79",
+      "displayNameArabic": "",
+      "filename": "079.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 80,
+      "displayName": "Track 80",
+      "displayNameArabic": "",
+      "filename": "080.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 81,
+      "displayName": "Track 81",
+      "displayNameArabic": "",
+      "filename": "081.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 82,
+      "displayName": "Track 82",
+      "displayNameArabic": "",
+      "filename": "082.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 83,
+      "displayName": "Track 83",
+      "displayNameArabic": "",
+      "filename": "083.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 84,
+      "displayName": "Track 84",
+      "displayNameArabic": "",
+      "filename": "084.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 85,
+      "displayName": "Track 85",
+      "displayNameArabic": "",
+      "filename": "085.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 86,
+      "displayName": "Track 86",
+      "displayNameArabic": "",
+      "filename": "086.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 87,
+      "displayName": "Track 87",
+      "displayNameArabic": "",
+      "filename": "087.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 88,
+      "displayName": "Track 88",
+      "displayNameArabic": "",
+      "filename": "088.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 89,
+      "displayName": "Track 89",
+      "displayNameArabic": "",
+      "filename": "089.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 90,
+      "displayName": "Track 90",
+      "displayNameArabic": "",
+      "filename": "090.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 91,
+      "displayName": "Track 91",
+      "displayNameArabic": "",
+      "filename": "091.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 92,
+      "displayName": "Track 92",
+      "displayNameArabic": "",
+      "filename": "092.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 93,
+      "displayName": "Track 93",
+      "displayNameArabic": "",
+      "filename": "093.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 94,
+      "displayName": "Track 94",
+      "displayNameArabic": "",
+      "filename": "094.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 95,
+      "displayName": "Track 95",
+      "displayNameArabic": "",
+      "filename": "095.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 96,
+      "displayName": "Track 96",
+      "displayNameArabic": "",
+      "filename": "096.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 97,
+      "displayName": "Track 97",
+      "displayNameArabic": "",
+      "filename": "097.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 98,
+      "displayName": "Track 98",
+      "displayNameArabic": "",
+      "filename": "098.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 99,
+      "displayName": "Track 99",
+      "displayNameArabic": "",
+      "filename": "099.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 100,
+      "displayName": "Track 100",
+      "displayNameArabic": "",
+      "filename": "100.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 101,
+      "displayName": "Track 101",
+      "displayNameArabic": "",
+      "filename": "101.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 102,
+      "displayName": "Track 102",
+      "displayNameArabic": "",
+      "filename": "102.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 103,
+      "displayName": "Track 103",
+      "displayNameArabic": "",
+      "filename": "103.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 104,
+      "displayName": "Track 104",
+      "displayNameArabic": "",
+      "filename": "104.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 105,
+      "displayName": "Track 105",
+      "displayNameArabic": "",
+      "filename": "105.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 106,
+      "displayName": "Track 106",
+      "displayNameArabic": "",
+      "filename": "106.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 107,
+      "displayName": "Track 107",
+      "displayNameArabic": "",
+      "filename": "107.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 108,
+      "displayName": "Track 108",
+      "displayNameArabic": "",
+      "filename": "108.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 109,
+      "displayName": "Track 109",
+      "displayNameArabic": "",
+      "filename": "109.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 110,
+      "displayName": "Track 110",
+      "displayNameArabic": "",
+      "filename": "110.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 111,
+      "displayName": "Track 111",
+      "displayNameArabic": "",
+      "filename": "111.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 112,
+      "displayName": "Track 112",
+      "displayNameArabic": "",
+      "filename": "112.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 113,
+      "displayName": "Track 113",
+      "displayNameArabic": "",
+      "filename": "113.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 114,
+      "displayName": "Track 114",
+      "displayNameArabic": "",
+      "filename": "114.mp3",
+      "durationMs": 0
+    },
+    {
+      "number": 115,
+      "displayName": "Track 115",
+      "displayNameArabic": "",
+      "filename": "115.mp3",
+      "durationMs": 0
+    }
+  ]
+}
