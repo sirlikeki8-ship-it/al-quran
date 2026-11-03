@@ -20,16 +20,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK (v4.0.4 — fixes removed tools package)
-        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd
-        with:
-          packages: 'platform-tools'
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Grant execute permission
         run: chmod +x gradlew
+
+      # Android SDK is pre-installed on ubuntu-latest. 
+      # We only need to point Gradle at it.
+      - name: Configure SDK path
+        run: echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
 
       - name: Build debug APK
         run: ./gradlew :app:assembleDebug --no-daemon
