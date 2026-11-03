@@ -13,18 +13,20 @@ import androidx.compose.runtime.*
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.likeki.alquran.playback.PlayerController
+import com.likeki.alquran.ui.AboutScreen
 import com.likeki.alquran.ui.PlayerScreen
-import com.likeki.alquran.ui.SettingsSheet
+import com.likeki.alquran.ui.SettingsScreen
 import com.likeki.alquran.ui.theme.AlQuranTheme
 
 class MainActivity : ComponentActivity() {
 
     private val vm: PlaybackViewModel by viewModels()
+    private val settingsVm: SettingsViewModel by viewModels()
     private lateinit var controller: PlayerController
 
     private val notifPermission = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) { /* ignore result — playback still works, notification just hidden on older devices */ }
+    ) { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -38,13 +40,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AlQuranTheme {
-                var showSettings by remember { mutableStateOf(false) }
-
+                var screen by remember { mutableStateOf("player") }
                 val state by vm.state.collectAsState()
 
-                // Sync playback state from service to view model
                 DisposableEffect(Unit) {
-                    controller.onStateChanged = { playing, pos, dur, idx ->
+                    controller.onStateChanged = { playing, pos, dur, _ ->
                         vm.setPlaying(playing)
                         vm.setProgress(pos, dur)
                     }
@@ -61,39 +61,44 @@ class MainActivity : ComponentActivity() {
                     onDispose { controller.release() }
                 }
 
-                PlayerScreen(
-                    vm = vm,
-                    onPlayPause = {
-                        val track = state.currentTrack ?: return@PlayerScreen
-                        if (!state.isPlaying) {
-                            controller.play(track)
-                        } else {
-                            controller.playPause()
-                        }
-                    },
-                    onNext = {
-                        val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
-                        if (next != null) {
-                            vm.selectTrack(next)
-                            state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
-                        }
-                    },
-                    onPrevious = {
-                        val prev = (state.currentIndex - 1).takeIf { it >= 0 }
-                            ?: (state.playlist.tracks.size - 1)
-                        vm.selectTrack(prev)
-                        state.playlist.tracks.getOrNull(prev)?.let { controller.play(it) }
-                    },
-                    onSeek = { ms -> controller.seekTo(ms) },
-                    onSelectTrack = { idx ->
-                        vm.selectTrack(idx)
-                        state.playlist.tracks.getOrNull(idx)?.let { controller.play(it) }
-                    },
-                    onSettings = { showSettings = true }
-                )
+                when (screen) {
+                    "player" -> PlayerScreen(
+                        vm = vm,
+                        onPlayPause = {
+                            val track = state.currentTrack ?: return@PlayerScreen
+                            if (!state.isPlaying) controller.play(track) else controller.playPause()
+                        },
+                        onNext = {
+                            val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
+                            if (next != null) {
+                                vm.selectTrack(next)
+                                state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
+                            }
+                        },
+                        onPrevious = {
+                            val prev = (state.currentIndex - 1).takeIf { it >= 0 }
+                                ?: (state.playlist.tracks.size - 1)
+                            vm.selectTrack(prev)
+                            state.playlist.tracks.getOrNull(prev)?.let { controller.play(it) }
+                        },
+                        onSeek = { ms -> controller.seekTo(ms) },
+                        onSelectTrack = { idx ->
+                            vm.selectTrack(idx)
+                            state.playlist.tracks.getOrNull(idx)?.let { controller.play(it) }
+                        },
+                        onSettings = { screen = "settings" }
+                    )
 
-                if (showSettings) {
-                    SettingsSheet(onDismiss = { showSettings = false })
+                    "settings" -> {
+                        LaunchedEffect(Unit) { settingsVm.refresh() }
+                        SettingsScreen(
+                            vm = settingsVm,
+                            onBack = { screen = "player" },
+                            onAbout = { screen = "about" }
+                        )
+                    }
+
+                    "about" -> AboutScreen(onBack = { screen = "settings" })
                 }
 
                 state.error?.let { msg ->

@@ -325,3 +325,15 @@ private fun formatTime(ms: Long): String {
     val s = total % 60
     return "%02d:%02d".format(m, s)
 }
+
+
+@Composable
+private fun OwnerCreditInsideRing() {
+    Text(
+        text = "Mohamadu Nurudini Taahir",
+        fontSize = 10.sp,
+        letterSpacing = 1.sp,
+        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f),
+        textAlign = TextAlign.Center
+    )
+}
