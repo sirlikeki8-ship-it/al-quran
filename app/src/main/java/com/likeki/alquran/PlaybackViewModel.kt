@@ -9,6 +9,7 @@ import com.likeki.alquran.util.FileResolver
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 data class UiState(
@@ -43,13 +44,9 @@ class PlaybackViewModel(app: Application) : AndroidViewModel(app) {
             val downloaded = playlist.tracks.filter {
                 FileResolver.isDownloaded(alApp.audioDir, it.number, it.filename)
             }.map { it.number }.toSet()
-            val lastTrack = alApp.settings.lastTrack
-            val shuffle = alApp.settings.shuffle
-            val repeat = alApp.settings.repeatMode
-            // grab once
-            val lt = kotlinx.coroutines.flow.first(lastTrack)
-            val sh = kotlinx.coroutines.flow.first(shuffle)
-            val rp = kotlinx.coroutines.flow.first(repeat)
+            val lt = alApp.settings.lastTrack.first()
+            val sh = alApp.settings.shuffle.first()
+            val rp = alApp.settings.repeatMode.first()
             _state.value = _state.value.copy(
                 playlist = playlist,
                 currentIndex = lt.coerceIn(0, (playlist.tracks.size - 1).coerceAtLeast(0)),
