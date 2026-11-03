@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout
@@ -20,54 +20,55 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Detect Android SDK path
+      - name: Locate Android SDK
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
-          if [ -z "$ANDROID_HOME" ]; then
-            echo "ANDROID_HOME not set — locating..."
-            for p in /usr/local/lib/android/sdk /opt/android-sdk /usr/lib/android-sdk $HOME/android-sdk; do
-              if [ -d "$p" ]; then
-                echo "Found SDK at $p"
-                echo "ANDROID_HOME=$p" >> $GITHUB_ENV
-                echo "ANDROID_SDK_ROOT=$p" >> $GITHUB_ENV
-                echo "sdk.dir=$p" > local.properties
-                break
-              fi
-            done
-          else
-            echo "sdk.dir=$ANDROID_HOME" > local.properties
-          fi
-          cat local.properties
-
-      - name: List installed SDK components
-        run: |
-          ls $ANDROID_HOME/platforms/ 2>&1 || true
-          ls $ANDROID_HOME/build-tools/ 2>&1 || true
+          for p in $ANDROID_HOME /usr/local/lib/android/sdk /opt/android-sdk $HOME/android-sdk; do
+            if [ -d "$p/platforms" ]; then
+              echo "Using SDK: $p"
+              echo "ANDROID_HOME=$p" >> $GITHUB_ENV
+              echo "sdk.dir=$p" > local.properties
+              cat local.properties
+              exit 0
+            fi
+          done
+          echo "No Android SDK found" && exit 1
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Grant execute permission
+      - name: Make gradlew executable
         run: chmod +x gradlew
 
-      - name: Build debug APK
-        run: ./gradlew :app:assembleDebug --no-daemon --info 2>&1 | tail -80
+      - name: Clean build (forces real compile)
+        run: ./gradlew clean :app:assembleDebug --no-daemon --stacktrace 2>&1 | tee /tmp/gradle.log
 
-      - name: Upload debug APK
+      - name: Verify APK exists
+        run: |
+          echo "=== Outputs dir ==="
+          ls -laR app/build/outputs/apk/ || (echo "NO APK PRODUCED"; tail -100 /tmp/gradle.log; exit 1)
+          APK=$(find app/build/outputs -name "*.apk" | head -1)
+          if [ -z "$APK" ]; then
+            echo "No APK found — printing full gradle log"
+            tail -150 /tmp/gradle.log
+            exit 1
+          fi
+          echo "Found APK: $APK"
+          ls -lh "$APK"
+          echo "APK_SIZE=$(stat -c%s "$APK")" >> $GITHUB_ENV
+
+      - name: Upload APK
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: al-quran-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/*.apk
           retention-days: 30
-          if-no-files-found: warn
+          if-no-files-found: error
 
-      - name: Upload build log
-        if: always()
+      - name: Upload gradle log on failure
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: build-log
-          path: app/build/reports/ 2>/dev/null || true
+          name: gradle-log
+          path: /tmp/gradle.log
           retention-days: 7
-          if-no-files-found: ignore
