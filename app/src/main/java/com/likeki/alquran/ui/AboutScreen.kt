@@ -1,5 +1,6 @@
 package com.likeki.alquran.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -15,11 +16,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.likeki.alquran.ui.theme.Gold
+import com.likeki.alquran.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +47,27 @@ fun AboutScreen(onBack: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(Modifier.height(24.dp))
-            OwnerAvatar()
+            Box(
+                modifier = Modifier
+                    .size(140.dp)
+                    .clip(CircleShape)
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
+                            )
+                        )
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.owner_photo),
+                    contentDescription = "Mohamadu Nurudini Taahir",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
             Spacer(Modifier.height(16.dp))
             Text(
                 "Mohamadu Nurudini Taahir",
@@ -80,11 +102,7 @@ fun AboutScreen(onBack: () -> Unit) {
             )
 
             Spacer(Modifier.height(20.dp))
-            Text(
-                "Privacy",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            Text("Privacy", fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
             Spacer(Modifier.height(6.dp))
             Text(
                 "This application does not collect personal information. Downloaded audio is stored locally on your device and never uploaded. There are no analytics SDKs, no ad SDKs, and no user accounts.",
@@ -97,53 +115,11 @@ fun AboutScreen(onBack: () -> Unit) {
                 "— Mohamadu Nurudini Taahir",
                 fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.primary,
-                fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                fontStyle = FontStyle.Italic,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(Modifier.height(48.dp))
-        }
-    }
-}
-
-
-@Composable
-private fun OwnerAvatar() {
-    val ctx = androidx.compose.ui.platform.LocalContext.current
-    val hasPhoto = androidx.compose.ui.res.painterResource
-    // Try to load the bundled owner photo; fall back to "MN" initials if missing
-    val painter = try {
-        androidx.compose.ui.res.painterResource(id = ctx.resources.getIdentifier("owner_photo", "drawable", ctx.packageName))
-    } catch (e: Exception) { null }
-
-    Box(
-        modifier = Modifier
-            .size(140.dp)
-            .clip(CircleShape)
-            .background(
-                Brush.verticalGradient(
-                    listOf(
-                        MaterialTheme.colorScheme.primary,
-                        MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)
-                    )
-                )
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        if (painter != null) {
-            androidx.compose.foundation.Image(
-                painter = painter,
-                contentDescription = "Mohamadu Nurudini Taahir",
-                contentScale = androidx.compose.ui.layout.ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-        } else {
-            Text(
-                "MN",
-                fontSize = 52.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Gold
-            )
         }
     }
 }
