@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -20,36 +20,54 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Detect Android SDK path
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          if [ -z "$ANDROID_HOME" ]; then
+            echo "ANDROID_HOME not set — locating..."
+            for p in /usr/local/lib/android/sdk /opt/android-sdk /usr/lib/android-sdk $HOME/android-sdk; do
+              if [ -d "$p" ]; then
+                echo "Found SDK at $p"
+                echo "ANDROID_HOME=$p" >> $GITHUB_ENV
+                echo "ANDROID_SDK_ROOT=$p" >> $GITHUB_ENV
+                echo "sdk.dir=$p" > local.properties
+                break
+              fi
+            done
+          else
+            echo "sdk.dir=$ANDROID_HOME" > local.properties
+          fi
+          cat local.properties
+
+      - name: List installed SDK components
+        run: |
+          ls $ANDROID_HOME/platforms/ 2>&1 || true
+          ls $ANDROID_HOME/build-tools/ 2>&1 || true
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      # Android SDK is pre-installed on ubuntu-latest. 
-      # We only need to point Gradle at it.
-      - name: Configure SDK path
-        run: echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
-
       - name: Build debug APK
-        run: ./gradlew :app:assembleDebug --no-daemon
+        run: ./gradlew :app:assembleDebug --no-daemon --info 2>&1 | tail -80
 
       - name: Upload debug APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: al-quran-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
+          if-no-files-found: warn
 
-      - name: Build release AAB
-        run: ./gradlew :app:bundleRelease --no-daemon
-        continue-on-error: true
-
-      - name: Upload release AAB
-        uses: actions/upload-artifact@v4
+      - name: Upload build log
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: al-quran-release-aab
-          path: app/build/outputs/bundle/release/app-release.aab
-          retention-days: 30
+          name: build-log
+          path: app/build/reports/ 2>/dev/null || true
+          retention-days: 7
           if-no-files-found: ignore
