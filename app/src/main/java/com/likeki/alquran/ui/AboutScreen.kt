@@ -106,8 +106,16 @@ fun AboutScreen(onBack: () -> Unit) {
     }
 }
 
+
 @Composable
 private fun OwnerAvatar() {
+    val ctx = androidx.compose.ui.platform.LocalContext.current
+    val hasPhoto = androidx.compose.ui.res.painterResource
+    // Try to load the bundled owner photo; fall back to "MN" initials if missing
+    val painter = try {
+        androidx.compose.ui.res.painterResource(id = ctx.resources.getIdentifier("owner_photo", "drawable", ctx.packageName))
+    } catch (e: Exception) { null }
+
     Box(
         modifier = Modifier
             .size(140.dp)
@@ -122,12 +130,21 @@ private fun OwnerAvatar() {
             ),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            "MN",
-            fontSize = 52.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Gold
-        )
+        if (painter != null) {
+            androidx.compose.foundation.Image(
+                painter = painter,
+                contentDescription = "Mohamadu Nurudini Taahir",
+                contentScale = androidx.compose.ui.layout.ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        } else {
+            Text(
+                "MN",
+                fontSize = 52.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Gold
+            )
+        }
     }
 }
 
