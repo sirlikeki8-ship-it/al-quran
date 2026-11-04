@@ -95,6 +95,7 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
         refresh()
     }
     fun resetSettings() = viewModelScope.launch {
-        alApp.settings.resetAll(); refresh()
+        alApp.settings.resetAll()
+        refresh()
     }
 }

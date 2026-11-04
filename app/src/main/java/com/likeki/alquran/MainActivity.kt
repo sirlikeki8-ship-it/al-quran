@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.*
+import kotlinx.coroutines.flow.first
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.likeki.alquran.playback.PlayerController
@@ -36,6 +37,8 @@ class MainActivity : ComponentActivity() {
         controller = PlayerController(this)
         controller.connect { }
 
+        val settings = (application as AlQuranApp).settings
+
         maybeRequestNotifications()
 
         setContent {
@@ -50,6 +53,11 @@ class MainActivity : ComponentActivity() {
                     }
                     controller.onError = { msg -> vm.setError(msg) }
                     controller.onTrackEnded = {
+                        val autoNext = kotlinx.coroutines.runBlocking { settings.autoPlayNext.first() }
+                        if (!autoNext) {
+                            vm.setPlaying(false)
+                            return@onTrackEnded
+                        }
                         val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
                         if (next != null) {
                             vm.selectTrack(next)
