@@ -5,805 +5,805 @@
     {
       "number": 1,
       "displayName": "Al-Fatihah",
-      "displayNameArabic": "Al-Fatihah",
+      "displayNameArabic": "سورة الفاتحة",
       "filename": "001.mp3",
       "durationMs": 0
     },
     {
       "number": 2,
       "displayName": "Al-Baqarah",
-      "displayNameArabic": "Al-Baqarah",
+      "displayNameArabic": "سورة البقرة",
       "filename": "002.mp3",
       "durationMs": 0
     },
     {
       "number": 3,
       "displayName": "Aal-Imran",
-      "displayNameArabic": "Aal-Imran",
+      "displayNameArabic": "سورة آل عمران",
       "filename": "003.mp3",
       "durationMs": 0
     },
     {
       "number": 4,
       "displayName": "An-Nisa",
-      "displayNameArabic": "An-Nisa",
+      "displayNameArabic": "سورة النساء",
       "filename": "004.mp3",
       "durationMs": 0
     },
     {
       "number": 5,
       "displayName": "Al-Maidah",
-      "displayNameArabic": "Al-Maidah",
+      "displayNameArabic": "سورة المائدة",
       "filename": "005.mp3",
       "durationMs": 0
     },
     {
       "number": 6,
       "displayName": "Al-Anam",
-      "displayNameArabic": "Al-Anam",
+      "displayNameArabic": "سورة الأنعام",
       "filename": "006.mp3",
       "durationMs": 0
     },
     {
       "number": 7,
       "displayName": "Al-Araf",
-      "displayNameArabic": "Al-Araf",
+      "displayNameArabic": "سورة الأعراف",
       "filename": "007.mp3",
       "durationMs": 0
     },
     {
       "number": 8,
       "displayName": "Al-Anfal",
-      "displayNameArabic": "Al-Anfal",
+      "displayNameArabic": "سورة الأنفال",
       "filename": "008.mp3",
       "durationMs": 0
     },
     {
       "number": 9,
       "displayName": "At-Tawbah",
-      "displayNameArabic": "At-Tawbah",
+      "displayNameArabic": "سورة التوبة",
       "filename": "009.mp3",
       "durationMs": 0
     },
     {
       "number": 10,
       "displayName": "Yunus",
-      "displayNameArabic": "Yunus",
+      "displayNameArabic": "سورة يونس",
       "filename": "010.mp3",
       "durationMs": 0
     },
     {
       "number": 11,
       "displayName": "Hud",
-      "displayNameArabic": "Hud",
+      "displayNameArabic": "سورة هود",
       "filename": "011.mp3",
       "durationMs": 0
     },
     {
       "number": 12,
       "displayName": "Yusuf",
-      "displayNameArabic": "Yusuf",
+      "displayNameArabic": "سورة يوسف",
       "filename": "012.mp3",
       "durationMs": 0
     },
     {
       "number": 13,
       "displayName": "Ar-Rad",
-      "displayNameArabic": "Ar-Rad",
+      "displayNameArabic": "سورة الرعد",
       "filename": "013.mp3",
       "durationMs": 0
     },
     {
       "number": 14,
       "displayName": "Ibrahim",
-      "displayNameArabic": "Ibrahim",
+      "displayNameArabic": "سورة إبراهيم",
       "filename": "014.mp3",
       "durationMs": 0
     },
     {
       "number": 15,
       "displayName": "Al-Hijr",
-      "displayNameArabic": "Al-Hijr",
+      "displayNameArabic": "سورة الحجر",
       "filename": "015.mp3",
       "durationMs": 0
     },
     {
       "number": 16,
       "displayName": "An-Nahl",
-      "displayNameArabic": "An-Nahl",
+      "displayNameArabic": "سورة النحل",
       "filename": "016.mp3",
       "durationMs": 0
     },
     {
       "number": 17,
       "displayName": "Al-Isra",
-      "displayNameArabic": "Al-Isra",
+      "displayNameArabic": "سورة الإسراء",
       "filename": "017.mp3",
       "durationMs": 0
     },
     {
       "number": 18,
       "displayName": "Al-Kahf",
-      "displayNameArabic": "Al-Kahf",
+      "displayNameArabic": "سورة الكهف",
       "filename": "018.mp3",
       "durationMs": 0
     },
     {
       "number": 19,
       "displayName": "Maryam",
-      "displayNameArabic": "Maryam",
+      "displayNameArabic": "سورة مريم",
       "filename": "019.mp3",
       "durationMs": 0
     },
     {
       "number": 20,
       "displayName": "Ta-Ha",
-      "displayNameArabic": "Ta-Ha",
+      "displayNameArabic": "سورة طه",
       "filename": "020.mp3",
       "durationMs": 0
     },
     {
       "number": 21,
       "displayName": "Al-Anbiya",
-      "displayNameArabic": "Al-Anbiya",
+      "displayNameArabic": "سورة الأنبياء",
       "filename": "021.mp3",
       "durationMs": 0
     },
     {
       "number": 22,
       "displayName": "Al-Hajj",
-      "displayNameArabic": "Al-Hajj",
+      "displayNameArabic": "سورة الحج",
       "filename": "022.mp3",
       "durationMs": 0
     },
     {
       "number": 23,
       "displayName": "Al-Muminun",
-      "displayNameArabic": "Al-Muminun",
+      "displayNameArabic": "سورة المؤمنون",
       "filename": "023.mp3",
       "durationMs": 0
     },
     {
       "number": 24,
       "displayName": "An-Nur",
-      "displayNameArabic": "An-Nur",
+      "displayNameArabic": "سورة النور",
       "filename": "024.mp3",
       "durationMs": 0
     },
     {
       "number": 25,
       "displayName": "Al-Furqan",
-      "displayNameArabic": "Al-Furqan",
+      "displayNameArabic": "سورة الفرقان",
       "filename": "025.mp3",
       "durationMs": 0
     },
     {
       "number": 26,
       "displayName": "Ash-Shuara",
-      "displayNameArabic": "Ash-Shuara",
+      "displayNameArabic": "سورة الشعراء",
       "filename": "026.mp3",
       "durationMs": 0
     },
     {
       "number": 27,
       "displayName": "An-Naml",
-      "displayNameArabic": "An-Naml",
+      "displayNameArabic": "سورة النمل",
       "filename": "027.mp3",
       "durationMs": 0
     },
     {
       "number": 28,
       "displayName": "Al-Qasas",
-      "displayNameArabic": "Al-Qasas",
+      "displayNameArabic": "سورة القصص",
       "filename": "028.mp3",
       "durationMs": 0
     },
     {
       "number": 29,
       "displayName": "Al-Ankabut",
-      "displayNameArabic": "Al-Ankabut",
+      "displayNameArabic": "سورة العنكبوت",
       "filename": "029.mp3",
       "durationMs": 0
     },
     {
       "number": 30,
       "displayName": "Ar-Rum",
-      "displayNameArabic": "Ar-Rum",
+      "displayNameArabic": "سورة الروم",
       "filename": "030.mp3",
       "durationMs": 0
     },
     {
       "number": 31,
       "displayName": "Luqman",
-      "displayNameArabic": "Luqman",
+      "displayNameArabic": "سورة لقمان",
       "filename": "031.mp3",
       "durationMs": 0
     },
     {
       "number": 32,
       "displayName": "As-Sajdah",
-      "displayNameArabic": "As-Sajdah",
+      "displayNameArabic": "سورة السجدة",
       "filename": "032.mp3",
       "durationMs": 0
     },
     {
       "number": 33,
       "displayName": "Al-Ahzab",
-      "displayNameArabic": "Al-Ahzab",
+      "displayNameArabic": "سورة الأحزاب",
       "filename": "033.mp3",
       "durationMs": 0
     },
     {
       "number": 34,
       "displayName": "Saba",
-      "displayNameArabic": "Saba",
+      "displayNameArabic": "سورة سبأ",
       "filename": "034.mp3",
       "durationMs": 0
     },
     {
       "number": 35,
       "displayName": "Fatir",
-      "displayNameArabic": "Fatir",
+      "displayNameArabic": "سورة فاطر",
       "filename": "035.mp3",
       "durationMs": 0
     },
     {
       "number": 36,
       "displayName": "Ya-Sin",
-      "displayNameArabic": "Ya-Sin",
+      "displayNameArabic": "سورة يس",
       "filename": "036.mp3",
       "durationMs": 0
     },
     {
       "number": 37,
       "displayName": "As-Saffat",
-      "displayNameArabic": "As-Saffat",
+      "displayNameArabic": "سورة الصافات",
       "filename": "037.mp3",
       "durationMs": 0
     },
     {
       "number": 38,
       "displayName": "Sad",
-      "displayNameArabic": "Sad",
+      "displayNameArabic": "سورة ص",
       "filename": "038.mp3",
       "durationMs": 0
     },
     {
       "number": 39,
       "displayName": "Az-Zumar",
-      "displayNameArabic": "Az-Zumar",
+      "displayNameArabic": "سورة الزمر",
       "filename": "039.mp3",
       "durationMs": 0
     },
     {
       "number": 40,
       "displayName": "Ghafir",
-      "displayNameArabic": "Ghafir",
+      "displayNameArabic": "سورة غافر",
       "filename": "040.mp3",
       "durationMs": 0
     },
     {
       "number": 41,
       "displayName": "Fussilat",
-      "displayNameArabic": "Fussilat",
+      "displayNameArabic": "سورة فصلت",
       "filename": "041.mp3",
       "durationMs": 0
     },
     {
       "number": 42,
       "displayName": "Ash-Shura",
-      "displayNameArabic": "Ash-Shura",
+      "displayNameArabic": "سورة الشورى",
       "filename": "042.mp3",
       "durationMs": 0
     },
     {
       "number": 43,
       "displayName": "Az-Zukhruf",
-      "displayNameArabic": "Az-Zukhruf",
+      "displayNameArabic": "سورة الزخرف",
       "filename": "043.mp3",
       "durationMs": 0
     },
     {
       "number": 44,
       "displayName": "Ad-Dukhan",
-      "displayNameArabic": "Ad-Dukhan",
+      "displayNameArabic": "سورة الدخان",
       "filename": "044.mp3",
       "durationMs": 0
     },
     {
       "number": 45,
       "displayName": "Al-Jathiyah",
-      "displayNameArabic": "Al-Jathiyah",
+      "displayNameArabic": "سورة الجاثية",
       "filename": "045.mp3",
       "durationMs": 0
     },
     {
       "number": 46,
       "displayName": "Al-Ahqaf",
-      "displayNameArabic": "Al-Ahqaf",
+      "displayNameArabic": "سورة الأحقاف",
       "filename": "046.mp3",
       "durationMs": 0
     },
     {
       "number": 47,
       "displayName": "Muhammad",
-      "displayNameArabic": "Muhammad",
+      "displayNameArabic": "سورة محمد",
       "filename": "047.mp3",
       "durationMs": 0
     },
     {
       "number": 48,
       "displayName": "Al-Fath",
-      "displayNameArabic": "Al-Fath",
+      "displayNameArabic": "سورة الفتح",
       "filename": "048.mp3",
       "durationMs": 0
     },
     {
       "number": 49,
       "displayName": "Al-Hujurat",
-      "displayNameArabic": "Al-Hujurat",
+      "displayNameArabic": "سورة الحجرات",
       "filename": "049.mp3",
       "durationMs": 0
     },
     {
       "number": 50,
       "displayName": "Qaf",
-      "displayNameArabic": "Qaf",
+      "displayNameArabic": "سورة ق",
       "filename": "050.mp3",
       "durationMs": 0
     },
     {
       "number": 51,
       "displayName": "Adh-Dhariyat",
-      "displayNameArabic": "Adh-Dhariyat",
+      "displayNameArabic": "سورة الذاريات",
       "filename": "051.mp3",
       "durationMs": 0
     },
     {
       "number": 52,
       "displayName": "At-Tur",
-      "displayNameArabic": "At-Tur",
+      "displayNameArabic": "سورة الطور",
       "filename": "052.mp3",
       "durationMs": 0
     },
     {
       "number": 53,
       "displayName": "An-Najm",
-      "displayNameArabic": "An-Najm",
+      "displayNameArabic": "سورة النجم",
       "filename": "053.mp3",
       "durationMs": 0
     },
     {
       "number": 54,
       "displayName": "Al-Qamar",
-      "displayNameArabic": "Al-Qamar",
+      "displayNameArabic": "سورة القمر",
       "filename": "054.mp3",
       "durationMs": 0
     },
     {
       "number": 55,
       "displayName": "Ar-Rahman",
-      "displayNameArabic": "Ar-Rahman",
+      "displayNameArabic": "سورة الرحمن",
       "filename": "055.mp3",
       "durationMs": 0
     },
     {
       "number": 56,
       "displayName": "Al-Waqiah",
-      "displayNameArabic": "Al-Waqiah",
+      "displayNameArabic": "سورة الواقعة",
       "filename": "056.mp3",
       "durationMs": 0
     },
     {
       "number": 57,
       "displayName": "Al-Hadid",
-      "displayNameArabic": "Al-Hadid",
+      "displayNameArabic": "سورة الحديد",
       "filename": "057.mp3",
       "durationMs": 0
     },
     {
       "number": 58,
       "displayName": "Al-Mujadila",
-      "displayNameArabic": "Al-Mujadila",
+      "displayNameArabic": "سورة المجادلة",
       "filename": "058.mp3",
       "durationMs": 0
     },
     {
       "number": 59,
       "displayName": "Al-Hashr",
-      "displayNameArabic": "Al-Hashr",
+      "displayNameArabic": "سورة الحشر",
       "filename": "059.mp3",
       "durationMs": 0
     },
     {
       "number": 60,
       "displayName": "Al-Mumtahanah",
-      "displayNameArabic": "Al-Mumtahanah",
+      "displayNameArabic": "سورة الممتحنة",
       "filename": "060.mp3",
       "durationMs": 0
     },
     {
       "number": 61,
       "displayName": "As-Saff",
-      "displayNameArabic": "As-Saff",
+      "displayNameArabic": "سورة الصف",
       "filename": "061.mp3",
       "durationMs": 0
     },
     {
       "number": 62,
       "displayName": "Al-Jumuah",
-      "displayNameArabic": "Al-Jumuah",
+      "displayNameArabic": "سورة الجمعة",
       "filename": "062.mp3",
       "durationMs": 0
     },
     {
       "number": 63,
       "displayName": "Al-Munafiqun",
-      "displayNameArabic": "Al-Munafiqun",
+      "displayNameArabic": "سورة المنافقون",
       "filename": "063.mp3",
       "durationMs": 0
     },
     {
       "number": 64,
       "displayName": "At-Taghabun",
-      "displayNameArabic": "At-Taghabun",
+      "displayNameArabic": "سورة التغابن",
       "filename": "064.mp3",
       "durationMs": 0
     },
     {
       "number": 65,
       "displayName": "At-Talaq",
-      "displayNameArabic": "At-Talaq",
+      "displayNameArabic": "سورة الطلاق",
       "filename": "065.mp3",
       "durationMs": 0
     },
     {
       "number": 66,
       "displayName": "At-Tahrim",
-      "displayNameArabic": "At-Tahrim",
+      "displayNameArabic": "سورة التحريم",
       "filename": "066.mp3",
       "durationMs": 0
     },
     {
       "number": 67,
       "displayName": "Al-Mulk",
-      "displayNameArabic": "Al-Mulk",
+      "displayNameArabic": "سورة الملك",
       "filename": "067.mp3",
       "durationMs": 0
     },
     {
       "number": 68,
       "displayName": "Al-Qalam",
-      "displayNameArabic": "Al-Qalam",
+      "displayNameArabic": "سورة القلم",
       "filename": "068.mp3",
       "durationMs": 0
     },
     {
       "number": 69,
       "displayName": "Al-Haqqah",
-      "displayNameArabic": "Al-Haqqah",
+      "displayNameArabic": "سورة الحاقة",
       "filename": "069.mp3",
       "durationMs": 0
     },
     {
       "number": 70,
       "displayName": "Al-Maarij",
-      "displayNameArabic": "Al-Maarij",
+      "displayNameArabic": "سورة المعارج",
       "filename": "070.mp3",
       "durationMs": 0
     },
     {
       "number": 71,
       "displayName": "Nuh",
-      "displayNameArabic": "Nuh",
+      "displayNameArabic": "سورة نوح",
       "filename": "071.mp3",
       "durationMs": 0
     },
     {
       "number": 72,
       "displayName": "Al-Jinn",
-      "displayNameArabic": "Al-Jinn",
+      "displayNameArabic": "سورة الجن",
       "filename": "072.mp3",
       "durationMs": 0
     },
     {
       "number": 73,
       "displayName": "Al-Muzzammil",
-      "displayNameArabic": "Al-Muzzammil",
+      "displayNameArabic": "سورة المزمل",
       "filename": "073.mp3",
       "durationMs": 0
     },
     {
       "number": 74,
       "displayName": "Al-Muddaththir",
-      "displayNameArabic": "Al-Muddaththir",
+      "displayNameArabic": "سورة المدثر",
       "filename": "074.mp3",
       "durationMs": 0
     },
     {
       "number": 75,
       "displayName": "Al-Qiyamah",
-      "displayNameArabic": "Al-Qiyamah",
+      "displayNameArabic": "سورة القيامة",
       "filename": "075.mp3",
       "durationMs": 0
     },
     {
       "number": 76,
       "displayName": "Al-Insan",
-      "displayNameArabic": "Al-Insan",
+      "displayNameArabic": "سورة الإنسان",
       "filename": "076.mp3",
       "durationMs": 0
     },
     {
       "number": 77,
       "displayName": "Al-Mursalat",
-      "displayNameArabic": "Al-Mursalat",
+      "displayNameArabic": "سورة المرسلات",
       "filename": "077.mp3",
       "durationMs": 0
     },
     {
       "number": 78,
       "displayName": "An-Naba",
-      "displayNameArabic": "An-Naba",
+      "displayNameArabic": "سورة النبأ",
       "filename": "078.mp3",
       "durationMs": 0
     },
     {
       "number": 79,
       "displayName": "An-Naziat",
-      "displayNameArabic": "An-Naziat",
+      "displayNameArabic": "سورة النازعات",
       "filename": "079.mp3",
       "durationMs": 0
     },
     {
       "number": 80,
       "displayName": "Abasa",
-      "displayNameArabic": "Abasa",
+      "displayNameArabic": "سورة عبس",
       "filename": "080.mp3",
       "durationMs": 0
     },
     {
       "number": 81,
       "displayName": "At-Takwir",
-      "displayNameArabic": "At-Takwir",
+      "displayNameArabic": "سورة التكوير",
       "filename": "081.mp3",
       "durationMs": 0
     },
     {
       "number": 82,
       "displayName": "Al-Infitar",
-      "displayNameArabic": "Al-Infitar",
+      "displayNameArabic": "سورة الانفطار",
       "filename": "082.mp3",
       "durationMs": 0
     },
     {
       "number": 83,
       "displayName": "Al-Mutaffifin",
-      "displayNameArabic": "Al-Mutaffifin",
+      "displayNameArabic": "سورة المطففين",
       "filename": "083.mp3",
       "durationMs": 0
     },
     {
       "number": 84,
       "displayName": "Al-Inshiqaq",
-      "displayNameArabic": "Al-Inshiqaq",
+      "displayNameArabic": "سورة الانشقاق",
       "filename": "084.mp3",
       "durationMs": 0
     },
     {
       "number": 85,
       "displayName": "Al-Buruj",
-      "displayNameArabic": "Al-Buruj",
+      "displayNameArabic": "سورة البروج",
       "filename": "085.mp3",
       "durationMs": 0
     },
     {
       "number": 86,
       "displayName": "At-Tariq",
-      "displayNameArabic": "At-Tariq",
+      "displayNameArabic": "سورة الطارق",
       "filename": "086.mp3",
       "durationMs": 0
     },
     {
       "number": 87,
       "displayName": "Al-Ala",
-      "displayNameArabic": "Al-Ala",
+      "displayNameArabic": "سورة الأعلى",
       "filename": "087.mp3",
       "durationMs": 0
     },
     {
       "number": 88,
       "displayName": "Al-Ghashiyah",
-      "displayNameArabic": "Al-Ghashiyah",
+      "displayNameArabic": "سورة الغاشية",
       "filename": "088.mp3",
       "durationMs": 0
     },
     {
       "number": 89,
       "displayName": "Al-Fajr",
-      "displayNameArabic": "Al-Fajr",
+      "displayNameArabic": "سورة الفجر",
       "filename": "089.mp3",
       "durationMs": 0
     },
     {
       "number": 90,
       "displayName": "Al-Balad",
-      "displayNameArabic": "Al-Balad",
+      "displayNameArabic": "سورة البلد",
       "filename": "090.mp3",
       "durationMs": 0
     },
     {
       "number": 91,
       "displayName": "Ash-Shams",
-      "displayNameArabic": "Ash-Shams",
+      "displayNameArabic": "سورة الشمس",
       "filename": "091.mp3",
       "durationMs": 0
     },
     {
       "number": 92,
       "displayName": "Al-Layl",
-      "displayNameArabic": "Al-Layl",
+      "displayNameArabic": "سورة الليل",
       "filename": "092.mp3",
       "durationMs": 0
     },
     {
       "number": 93,
       "displayName": "Ad-Duha",
-      "displayNameArabic": "Ad-Duha",
+      "displayNameArabic": "سورة الضحى",
       "filename": "093.mp3",
       "durationMs": 0
     },
     {
       "number": 94,
       "displayName": "Ash-Sharh",
-      "displayNameArabic": "Ash-Sharh",
+      "displayNameArabic": "سورة الشرح",
       "filename": "094.mp3",
       "durationMs": 0
     },
     {
       "number": 95,
       "displayName": "At-Tin",
-      "displayNameArabic": "At-Tin",
+      "displayNameArabic": "سورة التين",
       "filename": "095.mp3",
       "durationMs": 0
     },
     {
       "number": 96,
       "displayName": "Al-Alaq",
-      "displayNameArabic": "Al-Alaq",
+      "displayNameArabic": "سورة العلق",
       "filename": "096.mp3",
       "durationMs": 0
     },
     {
       "number": 97,
       "displayName": "Al-Qadr",
-      "displayNameArabic": "Al-Qadr",
+      "displayNameArabic": "سورة القدر",
       "filename": "097.mp3",
       "durationMs": 0
     },
     {
       "number": 98,
       "displayName": "Al-Bayyinah",
-      "displayNameArabic": "Al-Bayyinah",
+      "displayNameArabic": "سورة البينة",
       "filename": "098.mp3",
       "durationMs": 0
     },
     {
       "number": 99,
       "displayName": "Az-Zalzalah",
-      "displayNameArabic": "Az-Zalzalah",
+      "displayNameArabic": "سورة الزلزلة",
       "filename": "099.mp3",
       "durationMs": 0
     },
     {
       "number": 100,
       "displayName": "Al-Adiyat",
-      "displayNameArabic": "Al-Adiyat",
+      "displayNameArabic": "سورة العاديات",
       "filename": "100.mp3",
       "durationMs": 0
     },
     {
       "number": 101,
       "displayName": "Al-Qariah",
-      "displayNameArabic": "Al-Qariah",
+      "displayNameArabic": "سورة القارعة",
       "filename": "101.mp3",
       "durationMs": 0
     },
     {
       "number": 102,
       "displayName": "At-Takathur",
-      "displayNameArabic": "At-Takathur",
+      "displayNameArabic": "سورة التكاثر",
       "filename": "102.mp3",
       "durationMs": 0
     },
     {
       "number": 103,
       "displayName": "Al-Asr",
-      "displayNameArabic": "Al-Asr",
+      "displayNameArabic": "سورة العصر",
       "filename": "103.mp3",
       "durationMs": 0
     },
     {
       "number": 104,
       "displayName": "Al-Humazah",
-      "displayNameArabic": "Al-Humazah",
+      "displayNameArabic": "سورة الهمزة",
       "filename": "104.mp3",
       "durationMs": 0
     },
     {
       "number": 105,
       "displayName": "Al-Fil",
-      "displayNameArabic": "Al-Fil",
+      "displayNameArabic": "سورة الفيل",
       "filename": "105.mp3",
       "durationMs": 0
     },
     {
       "number": 106,
       "displayName": "Quraysh",
-      "displayNameArabic": "Quraysh",
+      "displayNameArabic": "سورة قريش",
       "filename": "106.mp3",
       "durationMs": 0
     },
     {
       "number": 107,
       "displayName": "Al-Maun",
-      "displayNameArabic": "Al-Maun",
+      "displayNameArabic": "سورة الماعون",
       "filename": "107.mp3",
       "durationMs": 0
     },
     {
       "number": 108,
       "displayName": "Al-Kawthar",
-      "displayNameArabic": "Al-Kawthar",
+      "displayNameArabic": "سورة الكوثر",
       "filename": "108.mp3",
       "durationMs": 0
     },
     {
       "number": 109,
       "displayName": "Al-Kafirun",
-      "displayNameArabic": "Al-Kafirun",
+      "displayNameArabic": "سورة الكافرون",
       "filename": "109.mp3",
       "durationMs": 0
     },
     {
       "number": 110,
       "displayName": "An-Nasr",
-      "displayNameArabic": "An-Nasr",
+      "displayNameArabic": "سورة النصر",
       "filename": "110.mp3",
       "durationMs": 0
     },
     {
       "number": 111,
       "displayName": "Al-Masad",
-      "displayNameArabic": "Al-Masad",
+      "displayNameArabic": "سورة المسد",
       "filename": "111.mp3",
       "durationMs": 0
     },
     {
       "number": 112,
       "displayName": "Al-Ikhlas",
-      "displayNameArabic": "Al-Ikhlas",
+      "displayNameArabic": "سورة الإخلاص",
       "filename": "112.mp3",
       "durationMs": 0
     },
     {
       "number": 113,
       "displayName": "Al-Falaq",
-      "displayNameArabic": "Al-Falaq",
+      "displayNameArabic": "سورة الفلق",
       "filename": "113.mp3",
       "durationMs": 0
     },
     {
       "number": 114,
       "displayName": "An-Nas",
-      "displayNameArabic": "An-Nas",
+      "displayNameArabic": "سورة الناس",
       "filename": "114.mp3",
       "durationMs": 0
     },
     {
       "number": 115,
       "displayName": "Dua Khatm Al-Quran",
-      "displayNameArabic": "Dua Khatm Al-Quran",
+      "displayNameArabic": "دعاء الختم القران",
       "filename": "115.mp3",
       "durationMs": 0
     }

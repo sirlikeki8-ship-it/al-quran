@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                         val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
                         if (next != null) {
                             vm.selectTrack(next)
-                            state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
+                            state.playlist.tracks.getOrNull(next)?.let { controller.play(it, state.playlist.baseUrl) }
                         } else {
                             vm.setPlaying(false)
                         }
@@ -77,20 +77,20 @@ class MainActivity : ComponentActivity() {
                                 vm = vm,
                                 onPlayPause = {
                                     val track = state.currentTrack ?: return@PlayerScreen
-                                    if (!state.isPlaying) controller.play(track) else controller.playPause()
+                                    if (!state.isPlaying) controller.play(track, state.playlist.baseUrl) else controller.playPause()
                                 },
                                 onNext = {
                                     val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
                                     if (next != null) {
                                         vm.selectTrack(next)
-                                        state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
+                                        state.playlist.tracks.getOrNull(next)?.let { controller.play(it, state.playlist.baseUrl) }
                                     }
                                 },
                                 onPrevious = {
                                     val prev = (state.currentIndex - 1).takeIf { it >= 0 }
                                         ?: (state.playlist.tracks.size - 1)
                                     vm.selectTrack(prev)
-                                    state.playlist.tracks.getOrNull(prev)?.let { controller.play(it) }
+                                    state.playlist.tracks.getOrNull(prev)?.let { controller.play(it, state.playlist.baseUrl) }
                                 },
                                 onSeek = { ms -> controller.seekTo(ms) },
                                 onSelectTrack = { idx ->
@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
                                             val enabled = appSettings.resumePosition.first()
                                             if (enabled) appSettings.lastPosition.first() else 0L
                                         }
-                                        controller.play(t, resume)
+                                        controller.play(t, state.playlist.baseUrl, resume)
                                     }
                                 },
                                 onDownload = { track, baseUrl ->
