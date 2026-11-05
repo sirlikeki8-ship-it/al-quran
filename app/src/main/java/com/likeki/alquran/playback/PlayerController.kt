@@ -11,10 +11,20 @@ import com.google.common.util.concurrent.MoreExecutors
 import com.likeki.alquran.AlQuranApp
 import com.likeki.alquran.data.Track
 import com.likeki.alquran.util.FileResolver
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 class PlayerController(private val context: Context) {
     private val app = context.applicationContext as AlQuranApp
     private var controller: MediaController? = null
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private var pollJob: Job? = null
     var onStateChanged: ((Boolean, Long, Long, Int) -> Unit)? = null
     var onError: ((String) -> Unit)? = null
     var onTrackEnded: (() -> Unit)? = null
@@ -36,6 +46,7 @@ class PlayerController(private val context: Context) {
                     }
                     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) { pushState() }
                 })
+                startPolling()
                 onReady()
             } catch (e: Exception) {
                 onError?.invoke("Could not start player: ${e.message}")
@@ -43,7 +54,22 @@ class PlayerController(private val context: Context) {
         }, MoreExecutors.directExecutor())
     }
 
-    fun release() { controller?.release(); controller = null }
+    fun release() {
+        pollJob?.cancel()
+        scope.cancel()
+        controller?.release()
+        controller = null
+    }
+
+    private fun startPolling() {
+        pollJob?.cancel()
+        pollJob = scope.launch {
+            while (isActive) {
+                pushState()
+                delay(500)
+            }
+        }
+    }
 
     fun play(track: Track, baseUrl: String, resumeMs: Long = 0L) {
         val c = controller ?: return
