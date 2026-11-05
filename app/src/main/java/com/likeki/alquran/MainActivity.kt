@@ -12,7 +12,6 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.weight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -90,6 +89,7 @@ private fun AppRoot(
     var screen by remember { mutableStateOf("player") }
     val state by vm.state.collectAsState()
     val downloadState by downloadVm.state.collectAsState()
+    val context = androidx.compose.ui.platform.LocalContext.current
 
     DisposableEffect(Unit) {
         controller.onStateChanged = { playing, pos, dur, _ ->
@@ -185,13 +185,13 @@ private fun AppRoot(
 
     state.error?.let { msg ->
         LaunchedEffect(msg) {
-            android.widget.Toast.makeText(androidx.compose.ui.platform.LocalContext.current, msg, android.widget.Toast.LENGTH_LONG).show()
+            android.widget.Toast.makeText(context, msg, android.widget.Toast.LENGTH_LONG).show()
             vm.setError(null)
         }
     }
     downloadState.error?.let { msg ->
         LaunchedEffect(msg) {
-            android.widget.Toast.makeText(androidx.compose.ui.platform.LocalContext.current, msg, android.widget.Toast.LENGTH_LONG).show()
+            android.widget.Toast.makeText(context, msg, android.widget.Toast.LENGTH_LONG).show()
         }
     }
 }
