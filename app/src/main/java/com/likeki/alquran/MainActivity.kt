@@ -15,6 +15,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.likeki.alquran.playback.PlayerController
 import com.likeki.alquran.ui.AboutScreen
 import com.likeki.alquran.ui.PlayerScreen
+import com.likeki.alquran.ui.NowPlayingBar
 import com.likeki.alquran.ui.SettingsScreen
 import com.likeki.alquran.ui.theme.AlQuranTheme
 
@@ -65,6 +66,9 @@ class MainActivity : ComponentActivity() {
                     onDispose { controller.release() }
                 }
 
+                androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.fillMaxSize()) {
+                androidx.compose.foundation.layout.Column(androidx.compose.ui.Modifier.fillMaxSize()) {
+                androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.weight(1f)) {
                 when (screen) {
                     "player" -> PlayerScreen(
                         vm = vm,
@@ -88,7 +92,13 @@ class MainActivity : ComponentActivity() {
                         onSeek = { ms -> controller.seekTo(ms) },
                         onSelectTrack = { idx ->
                             vm.selectTrack(idx)
-                            state.playlist.tracks.getOrNull(idx)?.let { controller.play(it) }
+                            state.playlist.tracks.getOrNull(idx)?.let { t ->
+                                val resume = kotlinx.coroutines.runBlocking {
+                                    val enabled = appSettings.resumePosition.first()
+                                    if (enabled && t.number == state.currentTrack?.number) appSettings.lastPosition.first() else 0L
+                                }
+                                controller.play(t, resume)
+                            }
                         },
                         onDownload = { track, baseUrl ->
                             downloadVm.download(track, baseUrl) { num ->
@@ -106,11 +116,28 @@ class MainActivity : ComponentActivity() {
                         SettingsScreen(
                             vm = settingsVm,
                             onBack = { screen = "player" },
-                            onAbout = { screen = "about" }
+                            onAbout = { screen = "about" },
+                            onDownloadAll = {
+                                downloadVm.downloadAll(state.playlist.tracks, state.playlist.baseUrl) { num ->
+                                    vm.markDownloaded(num)
+                                }
+                            }
                         )
                     }
 
                     "about" -> AboutScreen(onBack = { screen = "settings" })
+                }
+                }
+                if (screen == "player") {
+                    NowPlayingBar(
+                        track = state.currentTrack,
+                        isPlaying = state.isPlaying,
+                        progress = if (state.durationMs > 0) state.positionMs.toFloat() / state.durationMs.toFloat() else 0f,
+                        onToggle = { controller.playPause() },
+                        onTap = { }
+                    )
+                }
+                }
                 }
 
                 state.error?.let { msg ->

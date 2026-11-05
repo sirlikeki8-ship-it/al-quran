@@ -20,18 +20,13 @@ class PlayerController(private val context: Context) {
     var onTrackEnded: (() -> Unit)? = null
 
     fun connect(onReady: () -> Unit) {
-        val token = SessionToken(
-            context,
-            ComponentName(context, PlaybackService::class.java)
-        )
+        val token = SessionToken(context, ComponentName(context, PlaybackService::class.java))
         val future = MediaController.Builder(context, token).buildAsync()
         future.addListener({
             try {
                 controller = future.get()
                 controller?.addListener(object : Player.Listener {
-                    override fun onIsPlayingChanged(isPlaying: Boolean) {
-                        pushState()
-                    }
+                    override fun onIsPlayingChanged(isPlaying: Boolean) { pushState() }
                     override fun onPlaybackStateChanged(playbackState: Int) {
                         if (playbackState == Player.STATE_ENDED) onTrackEnded?.invoke()
                         pushState()
@@ -39,9 +34,7 @@ class PlayerController(private val context: Context) {
                     override fun onPlayerError(error: androidx.media3.common.PlaybackException) {
                         onError?.invoke(error.message ?: "Playback error")
                     }
-                    override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
-                        pushState()
-                    }
+                    override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) { pushState() }
                 })
                 onReady()
             } catch (e: Exception) {
@@ -50,21 +43,18 @@ class PlayerController(private val context: Context) {
         }, MoreExecutors.directExecutor())
     }
 
-    fun release() {
-        controller?.release()
-        controller = null
-    }
+    fun release() { controller?.release(); controller = null }
 
-    fun play(track: Track) {
+    fun play(track: Track, resumeMs: Long = 0L) {
         val c = controller ?: return
         if (!FileResolver.isDownloaded(app.audioDir, track.number, track.filename)) {
-            onError?.invoke("Track ${track.number} is not downloaded yet. Download it first.")
+            onError?.invoke("Track ${track.number} is not downloaded yet.")
             return
         }
         val uri = FileResolver.localUri(app.audioDir, track.number, track.filename)
-        val item = MediaItem.fromUri(uri)
-        c.setMediaItem(item)
+        c.setMediaItem(MediaItem.fromUri(uri))
         c.prepare()
+        if (resumeMs > 0) c.seekTo(resumeMs)
         c.play()
     }
 
@@ -75,9 +65,7 @@ class PlayerController(private val context: Context) {
             c.play()
         }
     }
-
     fun seekTo(ms: Long) { controller?.seekTo(ms) }
-
     fun setRepeatMode(mode: Int) {
         controller?.repeatMode = when (mode) {
             1 -> Player.REPEAT_MODE_ONE
@@ -85,16 +73,9 @@ class PlayerController(private val context: Context) {
             else -> Player.REPEAT_MODE_OFF
         }
     }
-
     fun setShuffle(on: Boolean) { controller?.shuffleModeEnabled = on }
-
     private fun pushState() {
         val c = controller ?: return
-        onStateChanged?.invoke(
-            c.isPlaying,
-            c.currentPosition.coerceAtLeast(0),
-            c.duration.coerceAtLeast(0),
-            c.currentMediaItemIndex
-        )
+        onStateChanged?.invoke(c.isPlaying, c.currentPosition.coerceAtLeast(0), c.duration.coerceAtLeast(0), c.currentMediaItemIndex)
     }
 }

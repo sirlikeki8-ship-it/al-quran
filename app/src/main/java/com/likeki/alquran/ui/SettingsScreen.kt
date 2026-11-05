@@ -22,7 +22,8 @@ import com.likeki.alquran.SettingsViewModel
 fun SettingsScreen(
     vm: SettingsViewModel,
     onBack: () -> Unit,
-    onAbout: () -> Unit
+    onAbout: () -> Unit,
+    onDownloadAll: () -> Unit
 ) {
     val s by vm.state.collectAsState()
     Scaffold(
@@ -55,6 +56,7 @@ fun SettingsScreen(
             ToggleRow("Download over Wi-Fi only", s.wifiOnly) { vm.toggleWifiOnly() }
             InfoRow("Storage used", formatBytes(s.storageBytes))
             InfoRow("Downloaded tracks", "${s.downloadedTracks} / ${s.totalTracks}")
+            ActionRow("Download all 115 tracks") { onDownloadAll() }
             ActionRow("Clear all downloaded audio") { vm.clearDownloads() }
 
             Spacer(Modifier.height(8.dp))
