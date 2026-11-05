@@ -45,7 +45,7 @@ jobs:
       - name: Verify APK exists
         run: |
           echo "=== Outputs dir ==="
-          ls -laR app/build/outputs/apk/ || (echo "NO APK PRODUCED"; tail -100 /tmp/gradle.log; exit 1)
+          find app/build/outputs -name "*.apk" -exec ls -la {} \; || (echo "NO APK PRODUCED"; tail -100 /tmp/gradle.log; exit 1)
           APK=$(find app/build/outputs -name "*.apk" | head -1)
           if [ -z "$APK" ]; then
             echo "No APK found — printing full gradle log"
@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: al-quran-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/**/*.apk
           retention-days: 30
           if-no-files-found: error
 
