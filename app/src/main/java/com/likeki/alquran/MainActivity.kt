@@ -9,15 +9,20 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.likeki.alquran.data.SettingsStore
 import com.likeki.alquran.playback.PlayerController
 import com.likeki.alquran.ui.AboutScreen
-import com.likeki.alquran.ui.PlayerScreen
 import com.likeki.alquran.ui.NowPlayingBar
+import com.likeki.alquran.ui.PlayerScreen
 import com.likeki.alquran.ui.SettingsScreen
 import com.likeki.alquran.ui.theme.AlQuranTheme
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
 
@@ -25,7 +30,7 @@ class MainActivity : ComponentActivity() {
     private val settingsVm: SettingsViewModel by viewModels()
     private val downloadVm: DownloadViewModel by viewModels()
     private lateinit var controller: PlayerController
-    private lateinit var appSettings: com.likeki.alquran.data.SettingsStore
+    private lateinit var appSettings: SettingsStore
 
     private val notifPermission = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -39,19 +44,7 @@ class MainActivity : ComponentActivity() {
         appSettings = (application as AlQuranApp).settings
         controller = PlayerController(this)
         controller.connect { }
-
         maybeRequestNotifications()
-
-        // Playlist validation — log to logcat + toast if broken
-        androidx.lifecycle.lifecycleScope.launch {
-            val playlist = (application as AlQuranApp).playlistRepo.load()
-            val result = com.likeki.alquran.data.PlaylistValidator.validate(playlist)
-            if (!result.isValid) {
-                android.util.Log.w("ALQURAN", "Playlist issues: $result")
-            } else {
-                android.util.Log.i("ALQURAN", "Playlist OK: 115 tracks")
-            }
-        }
 
         setContent {
             AlQuranTheme {
@@ -77,82 +70,78 @@ class MainActivity : ComponentActivity() {
                     onDispose { controller.release() }
                 }
 
-                androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.fillMaxSize()) {
-                androidx.compose.foundation.layout.Column(androidx.compose.ui.Modifier.fillMaxSize()) {
-                androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.weight(1f)) {
-                when (screen) {
-                    "player" -> PlayerScreen(
-                        vm = vm,
-                        onPlayPause = {
-                            val track = state.currentTrack ?: return@PlayerScreen
-                            if (!state.isPlaying) controller.play(track) else controller.playPause()
-                        },
-                        onNext = {
-                            val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
-                            if (next != null) {
-                                vm.selectTrack(next)
-                                state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
-                            }
-                        },
-                        onPrevious = {
-                            val prev = (state.currentIndex - 1).takeIf { it >= 0 }
-                                ?: (state.playlist.tracks.size - 1)
-                            vm.selectTrack(prev)
-                            state.playlist.tracks.getOrNull(prev)?.let { controller.play(it) }
-                        },
-                        onSeek = { ms -> controller.seekTo(ms) },
-                        onSelectTrack = { idx ->
-                            vm.selectTrack(idx)
-                            state.playlist.tracks.getOrNull(idx)?.let { t ->
-                                val resume = kotlinx.coroutines.runBlocking {
-                                    val enabled = appSettings.resumePosition.first()
-                                    if (enabled && t.number == state.currentTrack?.number) appSettings.lastPosition.first() else 0L
-                                }
-                                controller.play(t, resume)
-                            }
-                        },
-                        onDownload = { track, baseUrl ->
-                            downloadVm.download(track, baseUrl) { num ->
-                                vm.markDownloaded(num)
-                            }
-                        },
-                        onDelete = { track ->
-                            downloadVm.deleteTrack(track) { num -> vm.unmarkDownloaded(num) }
-                        },
-                        downloadingSet = downloadState.downloading,
-                        progressMap = downloadState.progress,
-                        baseUrl = state.playlist.baseUrl,
-                        onSettings = { screen = "settings" }
-                    )
+                Column(Modifier.fillMaxSize()) {
+                    Box(Modifier.weight(1f)) {
+                        when (screen) {
+                            "player" -> PlayerScreen(
+                                vm = vm,
+                                onPlayPause = {
+                                    val track = state.currentTrack ?: return@PlayerScreen
+                                    if (!state.isPlaying) controller.play(track) else controller.playPause()
+                                },
+                                onNext = {
+                                    val next = nextIndex(state.currentIndex, state.repeatMode, state.shuffle, state.playlist.tracks.size)
+                                    if (next != null) {
+                                        vm.selectTrack(next)
+                                        state.playlist.tracks.getOrNull(next)?.let { controller.play(it) }
+                                    }
+                                },
+                                onPrevious = {
+                                    val prev = (state.currentIndex - 1).takeIf { it >= 0 }
+                                        ?: (state.playlist.tracks.size - 1)
+                                    vm.selectTrack(prev)
+                                    state.playlist.tracks.getOrNull(prev)?.let { controller.play(it) }
+                                },
+                                onSeek = { ms -> controller.seekTo(ms) },
+                                onSelectTrack = { idx ->
+                                    vm.selectTrack(idx)
+                                    state.playlist.tracks.getOrNull(idx)?.let { t ->
+                                        val resume = runBlocking {
+                                            val enabled = appSettings.resumePosition.first()
+                                            if (enabled) appSettings.lastPosition.first() else 0L
+                                        }
+                                        controller.play(t, resume)
+                                    }
+                                },
+                                onDownload = { track, baseUrl ->
+                                    downloadVm.download(track, baseUrl) { num -> vm.markDownloaded(num) }
+                                },
+                                onDelete = { track ->
+                                    downloadVm.deleteTrack(track) { num -> vm.unmarkDownloaded(num) }
+                                },
+                                downloadingSet = downloadState.downloading,
+                                progressMap = downloadState.progress,
+                                baseUrl = state.playlist.baseUrl,
+                                onSettings = { screen = "settings" }
+                            )
 
-                    "settings" -> {
-                        LaunchedEffect(Unit) { settingsVm.refresh() }
-                        SettingsScreen(
-                            vm = settingsVm,
-                            onBack = { screen = "player" },
-                            onAbout = { screen = "about" },
-                            onDownloadAll = {
-                                downloadVm.downloadAll(state.playlist.tracks, state.playlist.baseUrl) { num ->
-                                    vm.markDownloaded(num)
-                                }
-                            },
-                            onCancelAll = { downloadVm.cancelAll() }
+                            "settings" -> {
+                                LaunchedEffect(Unit) { settingsVm.refresh() }
+                                SettingsScreen(
+                                    vm = settingsVm,
+                                    onBack = { screen = "player" },
+                                    onAbout = { screen = "about" },
+                                    onDownloadAll = {
+                                        downloadVm.downloadAll(state.playlist.tracks, state.playlist.baseUrl) { num ->
+                                            vm.markDownloaded(num)
+                                        }
+                                    },
+                                    onCancelAll = { downloadVm.cancelAll() }
+                                )
+                            }
+
+                            "about" -> AboutScreen(onBack = { screen = "settings" })
+                        }
+                    }
+                    if (screen == "player") {
+                        NowPlayingBar(
+                            track = state.currentTrack,
+                            isPlaying = state.isPlaying,
+                            progress = if (state.durationMs > 0) state.positionMs.toFloat() / state.durationMs.toFloat() else 0f,
+                            onToggle = { controller.playPause() },
+                            onTap = { }
                         )
                     }
-
-                    "about" -> AboutScreen(onBack = { screen = "settings" })
-                }
-                }
-                if (screen == "player") {
-                    NowPlayingBar(
-                        track = state.currentTrack,
-                        isPlaying = state.isPlaying,
-                        progress = if (state.durationMs > 0) state.positionMs.toFloat() / state.durationMs.toFloat() else 0f,
-                        onToggle = { controller.playPause() },
-                        onTap = { }
-                    )
-                }
-                }
                 }
 
                 state.error?.let { msg ->
@@ -161,7 +150,6 @@ class MainActivity : ComponentActivity() {
                         vm.setError(null)
                     }
                 }
-
                 downloadState.error?.let { msg ->
                     LaunchedEffect(msg) {
                         android.widget.Toast.makeText(this@MainActivity, msg, android.widget.Toast.LENGTH_LONG).show()

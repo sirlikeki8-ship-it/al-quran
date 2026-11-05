@@ -230,7 +230,7 @@ fun PlayerScreen(
                             if (idx >= 0) onSelectTrack(idx)
                         },
                         onDownload = { onDownload(t, baseUrl) },
-                        onDelete = { if (isDownloaded) onDelete(t) }
+                        onDelete = { if (t.number in state.downloadedSet) onDelete(t) }
                     )
                 }
             }
@@ -256,6 +256,7 @@ private fun ProgressRing(
     }
 }
 
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
 private fun TrackRow(
     track: Track,
