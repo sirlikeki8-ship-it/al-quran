@@ -66,13 +66,13 @@ android {
 }
 
 dependencies {
-    // Media3 — explicit versions, no BOM
-    implementation("androidx.media3:media3-exoplayer:1.4.1")
-    implementation("androidx.media3:media3-session:1.4.1")
-    implementation("androidx.media3:media3-ui:1.4.1")
-    implementation("androidx.media3:media3-common:1.4.1")
-    implementation("androidx.media3:media3-datasource-cache:1.4.1")
-    implementation("androidx.media3:media3-database:1.4.1")
+    // Media3 1.5.0 — verified on Google Maven
+    implementation("androidx.media3:media3-exoplayer:1.5.0")
+    implementation("androidx.media3:media3-session:1.5.0")
+    implementation("androidx.media3:media3-ui:1.5.0")
+    implementation("androidx.media3:media3-common:1.5.0")
+    implementation("androidx.media3:media3-datasource-cache:1.5.0")
+    implementation("androidx.media3:media3-database:1.5.0")
     val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)
