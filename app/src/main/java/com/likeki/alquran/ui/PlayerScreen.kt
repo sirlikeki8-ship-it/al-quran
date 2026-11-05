@@ -11,7 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,9 +38,6 @@ fun PlayerScreen(
 ) {
     val state by vm.state.collectAsState()
     val track = state.currentTrack
-    val ctx = androidx.compose.ui.platform.LocalContext.current
-    val app = ctx.applicationContext as com.likeki.alquran.AlQuranApp
-    val showArabic by app.settings.showArabic.collectAsState(initial = true)
 
     Scaffold(
         topBar = {
@@ -90,7 +86,7 @@ fun PlayerScreen(
                             letterSpacing = 3.sp
                         )
                         Spacer(Modifier.height(6.dp))
-                        if (showArabic && !track?.displayNameArabic.isNullOrBlank()) {
+                        if (!track?.displayNameArabic.isNullOrBlank()) {
                             CompositionLocalProvider(
                                 LocalLayoutDirection provides LayoutDirection.Rtl
                             ) {
@@ -119,6 +115,8 @@ fun PlayerScreen(
                                 letterSpacing = 2.sp
                             )
                         }
+                        Spacer(Modifier.height(6.dp))
+                        OwnerCreditInsideRing()
                     }
                 }
             }
@@ -287,7 +285,7 @@ private fun TrackRow(
             )
             Spacer(Modifier.width(14.dp))
             Column(modifier = Modifier.weight(1f)) {
-                if (showArabic && track.displayNameArabic.isNotBlank()) {
+                if (track.displayNameArabic.isNotBlank()) {
                     CompositionLocalProvider(
                         LocalLayoutDirection provides LayoutDirection.Rtl
                     ) {
