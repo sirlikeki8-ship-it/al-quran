@@ -2,6 +2,7 @@ package com.likeki.alquran.ui
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -38,6 +39,7 @@ fun PlayerScreen(
     downloadingSet: Set<Int>,
     progressMap: Map<Int, Float>,
     baseUrl: String,
+    onDelete: (com.likeki.alquran.data.Track) -> Unit,
     onSettings: () -> Unit
 ) {
     val state by vm.state.collectAsState()
@@ -227,7 +229,8 @@ fun PlayerScreen(
                             val idx = state.playlist.tracks.indexOfFirst { it.number == t.number }
                             if (idx >= 0) onSelectTrack(idx)
                         },
-                        onDownload = { onDownload(t, baseUrl) }
+                        onDownload = { onDownload(t, baseUrl) },
+                        onDelete = { if (isDownloaded) onDelete(t) }
                     )
                 }
             }
@@ -261,18 +264,19 @@ private fun TrackRow(
     isDownloading: Boolean,
     progress: Float,
     onClick: () -> Unit,
-    onDownload: () -> Unit
+    onDownload: () -> Unit,
+    onDelete: () -> Unit
 ) {
     val bg by animateColorAsState(
         if (isCurrent) MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
         else MaterialTheme.colorScheme.background
     )
     Surface(
-        onClick = onClick,
         color = bg,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .padding(vertical = 4.dp)
+            .combinedClickable(onClick = onClick, onLongClick = onDelete),
         shape = RoundedCornerShape(12.dp)
     ) {
         Row(

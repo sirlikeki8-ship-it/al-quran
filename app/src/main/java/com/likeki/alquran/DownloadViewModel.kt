@@ -98,6 +98,12 @@ class DownloadViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    fun cancelAll() {
+        dm.cancel()
+        _state.value = _state.value.copy(downloading = emptySet(), progress = emptyMap())
+        viewModelScope.launch { kotlinx.coroutines.delay(500); dm.resetCancel() }
+    }
+
     fun deleteTrack(track: Track, onDeleted: (Int) -> Unit) {
         val f = com.likeki.alquran.util.FileResolver.localFile(alApp.audioDir, track.number, track.filename)
         if (f.exists()) f.delete()

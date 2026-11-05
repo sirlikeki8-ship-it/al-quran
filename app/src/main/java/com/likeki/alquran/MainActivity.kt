@@ -42,6 +42,17 @@ class MainActivity : ComponentActivity() {
 
         maybeRequestNotifications()
 
+        // Playlist validation — log to logcat + toast if broken
+        androidx.lifecycle.lifecycleScope.launch {
+            val playlist = (application as AlQuranApp).playlistRepo.load()
+            val result = com.likeki.alquran.data.PlaylistValidator.validate(playlist)
+            if (!result.isValid) {
+                android.util.Log.w("ALQURAN", "Playlist issues: $result")
+            } else {
+                android.util.Log.i("ALQURAN", "Playlist OK: 115 tracks")
+            }
+        }
+
         setContent {
             AlQuranTheme {
                 var screen by remember { mutableStateOf("player") }
@@ -105,6 +116,9 @@ class MainActivity : ComponentActivity() {
                                 vm.markDownloaded(num)
                             }
                         },
+                        onDelete = { track ->
+                            downloadVm.deleteTrack(track) { num -> vm.unmarkDownloaded(num) }
+                        },
                         downloadingSet = downloadState.downloading,
                         progressMap = downloadState.progress,
                         baseUrl = state.playlist.baseUrl,
@@ -121,7 +135,8 @@ class MainActivity : ComponentActivity() {
                                 downloadVm.downloadAll(state.playlist.tracks, state.playlist.baseUrl) { num ->
                                     vm.markDownloaded(num)
                                 }
-                            }
+                            },
+                            onCancelAll = { downloadVm.cancelAll() }
                         )
                     }
 

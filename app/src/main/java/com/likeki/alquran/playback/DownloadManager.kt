@@ -11,6 +11,9 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class DownloadManager(private val context: Context) {
+    @Volatile private var cancelRequested = false
+    fun cancel() { cancelRequested = true }
+    fun resetCancel() { cancelRequested = false }
     private val app = context.applicationContext as AlQuranApp
 
     suspend fun download(track: Track, baseUrl: String, onProgress: (Float) -> Unit): Result<File> =
@@ -38,6 +41,10 @@ class DownloadManager(private val context: Context) {
                         var read: Int
                         var done = 0L
                         while (input.read(buf).also { read = it } > 0) {
+                            if (cancelRequested) {
+                                partial.delete()
+                                return@withContext Result.failure(Exception("Cancelled"))
+                            }
                             output.write(buf, 0, read)
                             done += read
                             if (total > 0) onProgress((done.toFloat() / total).coerceIn(0f, 1f))

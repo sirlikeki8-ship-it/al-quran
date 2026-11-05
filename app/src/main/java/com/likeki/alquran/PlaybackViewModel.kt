@@ -77,4 +77,7 @@ class PlaybackViewModel(app: Application) : AndroidViewModel(app) {
         _state.value = _state.value.copy(downloadedSet = _state.value.downloadedSet + number)
     }
     fun setError(msg: String?) { _state.value = _state.value.copy(error = msg) }
+    fun unmarkDownloaded(number: Int) {
+        _state.value = _state.value.copy(downloadedSet = _state.value.downloadedSet - number)
+    }
 }

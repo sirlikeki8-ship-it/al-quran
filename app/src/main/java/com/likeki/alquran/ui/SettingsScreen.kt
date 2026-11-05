@@ -23,7 +23,8 @@ fun SettingsScreen(
     vm: SettingsViewModel,
     onBack: () -> Unit,
     onAbout: () -> Unit,
-    onDownloadAll: () -> Unit
+    onDownloadAll: () -> Unit,
+    onCancelAll: () -> Unit
 ) {
     val s by vm.state.collectAsState()
     Scaffold(
@@ -57,6 +58,7 @@ fun SettingsScreen(
             InfoRow("Storage used", formatBytes(s.storageBytes))
             InfoRow("Downloaded tracks", "${s.downloadedTracks} / ${s.totalTracks}")
             ActionRow("Download all 115 tracks") { onDownloadAll() }
+            ActionRow("Cancel in-progress downloads") { onCancelAll() }
             ActionRow("Clear all downloaded audio") { vm.clearDownloads() }
 
             Spacer(Modifier.height(8.dp))
