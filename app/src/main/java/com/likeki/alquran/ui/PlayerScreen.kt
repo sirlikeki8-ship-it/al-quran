@@ -34,6 +34,10 @@ fun PlayerScreen(
     onPrevious: () -> Unit,
     onSeek: (Long) -> Unit,
     onSelectTrack: (Int) -> Unit,
+    onDownload: (com.likeki.alquran.data.Track, String) -> Unit,
+    downloadingSet: Set<Int>,
+    progressMap: Map<Int, Float>,
+    baseUrl: String,
     onSettings: () -> Unit
 ) {
     val state by vm.state.collectAsState()
@@ -217,10 +221,13 @@ fun PlayerScreen(
                         track = t,
                         isCurrent = t.number == track?.number,
                         isDownloaded = t.number in state.downloadedSet,
+                        isDownloading = t.number in downloadingSet,
+                        progress = progressMap[t.number] ?: 0f,
                         onClick = {
                             val idx = state.playlist.tracks.indexOfFirst { it.number == t.number }
                             if (idx >= 0) onSelectTrack(idx)
-                        }
+                        },
+                        onDownload = { onDownload(t, baseUrl) }
                     )
                 }
             }
@@ -251,7 +258,10 @@ private fun TrackRow(
     track: Track,
     isCurrent: Boolean,
     isDownloaded: Boolean,
-    onClick: () -> Unit
+    isDownloading: Boolean,
+    progress: Float,
+    onClick: () -> Unit,
+    onDownload: () -> Unit
 ) {
     val bg by animateColorAsState(
         if (isCurrent) MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
@@ -302,20 +312,29 @@ private fun TrackRow(
                     color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                 )
             }
-            if (isDownloaded) {
-                Icon(
-                    Icons.Default.CheckCircle,
-                    "Offline",
+            when {
+                isDownloaded -> Icon(
+                    Icons.Default.CheckCircle, "Offline",
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(22.dp)
                 )
-            } else {
-                Icon(
-                    Icons.Default.CloudDownload,
-                    "Downloadable",
-                    tint = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f),
-                    modifier = Modifier.size(18.dp)
-                )
+                isDownloading -> Row(verticalAlignment = Alignment.CenterVertically) {
+                    CircularProgressIndicator(
+                        progress = { progress },
+                        modifier = Modifier.size(22.dp),
+                        strokeWidth = 2.dp,
+                        color = Gold
+                    )
+                    Spacer(Modifier.width(6.dp))
+                    Text("${(progress * 100).toInt()}%", fontSize = 11.sp)
+                }
+                else -> IconButton(onClick = onDownload, modifier = Modifier.size(32.dp)) {
+                    Icon(
+                        Icons.Default.CloudDownload, "Download",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
             }
         }
     }

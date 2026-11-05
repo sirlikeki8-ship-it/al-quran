@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
 
     private val vm: PlaybackViewModel by viewModels()
     private val settingsVm: SettingsViewModel by viewModels()
+    private val downloadVm: DownloadViewModel by viewModels()
     private lateinit var controller: PlayerController
     private lateinit var appSettings: com.likeki.alquran.data.SettingsStore
 
@@ -44,6 +45,7 @@ class MainActivity : ComponentActivity() {
             AlQuranTheme {
                 var screen by remember { mutableStateOf("player") }
                 val state by vm.state.collectAsState()
+                val downloadState by downloadVm.state.collectAsState()
 
                 DisposableEffect(Unit) {
                     controller.onStateChanged = { playing, pos, dur, _ ->
@@ -88,6 +90,14 @@ class MainActivity : ComponentActivity() {
                             vm.selectTrack(idx)
                             state.playlist.tracks.getOrNull(idx)?.let { controller.play(it) }
                         },
+                        onDownload = { track, baseUrl ->
+                            downloadVm.download(track, baseUrl) { num ->
+                                vm.markDownloaded(num)
+                            }
+                        },
+                        downloadingSet = downloadState.downloading,
+                        progressMap = downloadState.progress,
+                        baseUrl = state.playlist.baseUrl,
                         onSettings = { screen = "settings" }
                     )
 
@@ -107,6 +117,12 @@ class MainActivity : ComponentActivity() {
                     LaunchedEffect(msg) {
                         android.widget.Toast.makeText(this@MainActivity, msg, android.widget.Toast.LENGTH_LONG).show()
                         vm.setError(null)
+                    }
+                }
+
+                downloadState.error?.let { msg ->
+                    LaunchedEffect(msg) {
+                        android.widget.Toast.makeText(this@MainActivity, msg, android.widget.Toast.LENGTH_LONG).show()
                     }
                 }
             }
