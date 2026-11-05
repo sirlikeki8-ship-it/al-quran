@@ -10,12 +10,9 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 
 class PlaybackService : MediaSessionService() {
-
     private var session: MediaSession? = null
-
     override fun onCreate() {
         super.onCreate()
-
         val cache = AudioCache.get(this)
         val http = DefaultHttpDataSource.Factory()
             .setUserAgent("AL-QURAN/1.0")
@@ -26,23 +23,17 @@ class PlaybackService : MediaSessionService() {
             .setCache(cache)
             .setUpstreamDataSourceFactory(upstream)
             .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
-
         val mediaSourceFactory = DefaultMediaSourceFactory(cacheFactory)
-
         val player = ExoPlayer.Builder(this)
             .setMediaSourceFactory(mediaSourceFactory)
             .build()
-
         session = MediaSession.Builder(this, player).build()
     }
-
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? = session
-
     override fun onTaskRemoved(rootIntent: Intent?) {
         val p = session?.player ?: return
         if (!p.playWhenReady || p.mediaItemCount == 0) stopSelf()
     }
-
     override fun onDestroy() {
         session?.run { player.release(); release(); session = null }
         super.onDestroy()
