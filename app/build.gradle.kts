@@ -66,7 +66,7 @@ android {
 }
 
 dependencies {
-    // Media3 1.5.0 — verified on Google Maven
+    // Media3 1.5.0 — verified released Nov 27, 2024 (developer.android.com)
     implementation("androidx.media3:media3-exoplayer:1.5.0")
     implementation("androidx.media3:media3-session:1.5.0")
     implementation("androidx.media3:media3-ui:1.5.0")
